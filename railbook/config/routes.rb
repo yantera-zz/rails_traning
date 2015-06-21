@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :books
+  resources :books
+  resources :books
   get 'hell/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
