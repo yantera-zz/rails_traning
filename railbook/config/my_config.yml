@@ -17,3 +17,8 @@ production:
   hoge: "pro"
   <<: *COMMON
 
+master:
+  hoge: "mas"
+  <<: *COMMON
+
+
