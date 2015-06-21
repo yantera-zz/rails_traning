@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'hello/show'
+
+  resources :books
   resources :books
   resources :books
   resources :books
