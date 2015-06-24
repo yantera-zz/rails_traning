@@ -1,4 +1,5 @@
 class ViewController < ApplicationController
+
   def form_tag
     @book = Book.new
   end
@@ -54,5 +55,52 @@ class ViewController < ApplicationController
 
   def fields
     @user = User.find(980190962)
+  end
+
+  def hightlight
+  end
+
+  def conc
+  end
+
+  def datetime
+  end
+
+  def excerpt
+  end
+
+  def format
+  end
+
+  def link
+  end
+
+  def number_to
+  end
+
+  def sanitize
+  end
+
+  def simple_format
+  end
+
+  def truncate
+  end
+
+  def default_url_options(options = {})
+    { charset: 'utf-8' }
+  end
+
+  def adopt
+    render layout: 'sub'
+  end
+
+  def multi
+    render layout: 'layout'    # レイアウトlayout.html.erbを適用
+  end
+
+  def nest
+    @msg = '今日も良い天気です。'
+    render layout: 'child'
   end
 end
