@@ -1,7 +1,18 @@
+
 <%= form_for(@book) do |f| %>
+  <%= if @book.errors.any?  %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <ul>
+      <%@book.errprs.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
-    <%= f.label :isbn, 'ISBNコード' %><br />
-    <%= f.text_field :isbn %>
+    <div class="field_with_errors"<label for="book_isbn">Isbn</label></div><br />
+    <div class="field_with_errors"<input id="book_isbn" name="book[isbn]" type="text" value="" /></div>
   </div>
   <div class="actions">
     <%= f.submit '保存', data: { confirm: '保存しても良いですか？', disabled_with: '処理中...' } %>
