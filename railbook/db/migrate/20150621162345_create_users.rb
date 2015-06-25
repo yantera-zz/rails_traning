@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.boolean :db
       t.string :roles
-      t.integer :reviews_count
+      t.integer :reviews_count, default: 0
 
       t.timestamps null: false
     end
