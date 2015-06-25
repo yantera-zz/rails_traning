@@ -15,7 +15,7 @@ module ViewHelper
         format = '%Y年%m月%d日'
       when :time
         format = '%H:%M:%S'
-    emd
+    end
 
     # 指定されたフォーマットで日付時刻値を整形
     datetime.strftime(format)

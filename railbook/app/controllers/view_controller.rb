@@ -1,5 +1,4 @@
 class ViewController < ApplicationController
-
   def form_tag
     @book = Book.new
   end
@@ -115,5 +114,4 @@ class ViewController < ApplicationController
   def partial_col
     @book = Book.all
   end
-
 end
