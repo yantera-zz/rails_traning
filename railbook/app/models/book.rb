@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+  after_destroy :BookCallbacks.new
   has_many :reviews
   has_many :users, through: :reviews
   has_many :memos, as: :memoable

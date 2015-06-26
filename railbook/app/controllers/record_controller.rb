@@ -185,11 +185,12 @@ class RecordController < ApplicationController
   end
 
   def keywd_process
-    @search = SearchKeyword.new(prams[:search_keyword})
+    @search = SearchKeyword.new(params[:search_keyword])
     if @search.valid?
       render text: @search.keyword
     else
       render text: @search.errors.full_messages[0]
+    end
   end
 
   def belongs
@@ -212,13 +213,13 @@ class RecordController < ApplicationController
     @user = User.find_by(username: 'isatou')
   end
 
-  def cahhe-counter
-    @user = User.find(1)
+  def cahhe_counter
+    @user = User.find(980190962)
     render text: @user.reviews.siz
-  ende
+  end
 
   def memorize
-    @book = Book.find(1)
+    @book = Book.find(980190962)
     # 書籍情報に関するメモを登録
     @memo = @book.memos.build({ body: 'あとで買う' })
     if @memo.save
