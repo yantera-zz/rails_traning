@@ -24,6 +24,8 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
+    # render text: params[:book].inspect
+    # return
     @book = Book.new(book_params)
 
     respond_to do |format|
@@ -71,6 +73,7 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       # @book = Book.new(params.require(:book).permit(:isbn, :title, :price, :publish, :published, :cd))
-      @book = Book.new(params[:book])
+      # @book = Book.new(params[:book])
+      params.require(:book).permit(:isbn, :title, :price, :publish, :published, :cd)
     end
 end
