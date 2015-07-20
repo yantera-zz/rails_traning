@@ -1,11 +1,8 @@
-class HelloController < ApplicationController
-  befor_action :check_logined, only: :view
-  skip_before_action :check_logined only:list 
+module FormAuth
+  extend ActiveSupport::Concern
 
-  def show
-  end
-  def list
-    @books = Book.all
+  included do
+    before_filter :check_logined
   end
 
   private
@@ -23,4 +20,5 @@ class HelloController < ApplicationController
       redirect_to controller: :login, action: :index
     end
   end
+
 end

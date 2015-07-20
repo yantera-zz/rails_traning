@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  redirect_to @book, info: 'Book was successfull created'
   layout 'product'
   # GET /books
   # GET /books.json
@@ -62,6 +63,27 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def cookie
+          # テンプレート変数@emailにクッキー値をセット
+    @email = cookies[:email]
+  end
+
+  def cookie
+          # テンプレート変数@emailにクッキー値をセット(有効期限は３ヶ月後)
+    cookies[:email] = { value:: params[:email],
+      expire: 3.months.from_now, http_only: true}
+    render text: 'クッキーを保存しました。'
+  end
+
+  def session_show
+    @email = session[:email]
+  end
+
+  def session_rec
+    session[:email] = params[:email]
+    render text: 'セッションを保存しました。'
   end
 
   private
