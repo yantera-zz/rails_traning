@@ -1,10 +1,16 @@
+require 'TimeConstraint'
+
 Rails.application.routes.draw do
-  resources :members
-  resources :fan_comments
-  resources :reviews
+  # resources :members
+  # resources :fan_comments
+  resources :reviews, as: :comments
   resources :authors
-  resources :users
-  resources :books
+  # resources :users, controller: :members
+  #resources :users, except: [ :show, :destroy ]
+  resources :users, only: [ :index, :new, :create, :edit, :update ]
+  # resources :books, constraints: TimeConstraint.new
+  resources :books, format: false
+  resources :config
   get 'hello/show'
 
   resources :books
@@ -68,4 +74,48 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   match ':controller(/:action(/:id))', via: [ :get, :post, :patch ]
+  
+  namespace :admin do
+    resources :books
+  end
+
+  scope module: :admin do
+    resources :books
+  end
+
+  resources :reviews do
+  #  collection do
+  #    get :unapproval
+  #  end
+  #  member do
+  #    get :draft
+  #  end
+    get :unappeoval, on: :collection
+    get :draft, on: :member
+  end
+
+  resources :users do
+    get :unappeoval, on: :collection
+    get :draft, on: :member
+  end
+ 
+  resources :books do
+    # resources :reviews, shallow: true
+    resources :reviews, only: [ :index, :new, :create ]
+  end
+  resources :reviews, expect: [ :index, :new, :create ]
+ 
+  scope shallow_path: :b do
+    resources :books do
+      resources :reviews, shallow: true
+    end
+  end
+
+  scope shallow_prefix: :b do
+    resources :books do
+      resources :reviews, shallow: true
+    end
+  end
+  
+  root to: 'books#index'
 end
