@@ -1,0 +1,2 @@
+module FugaHelper
+end

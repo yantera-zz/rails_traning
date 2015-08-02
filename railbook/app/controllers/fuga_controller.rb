@@ -1,0 +1,2 @@
+class FugaController < ApplicationController
+end

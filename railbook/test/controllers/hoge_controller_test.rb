@@ -11,4 +11,12 @@ class HogeControllerTest < ActionController::TestCase
       cd: fales
     })
     assert book.save, 'Failed to save'
+  end
+  test "diff check" do
+    assert_difference 'Book.count', 1 do
+      post :create, book:{ isbn: '978-4-7741-4223-0',
+        title: 'Rubyポケットリファレンス', price: 3000,
+        publish: '技術評論社' }
+    end
+  end
 end
